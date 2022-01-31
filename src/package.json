@@ -1,0 +1,337 @@
+{
+  "profile": {
+    "name": "1TEST TEACHER3",
+    "surename": "1TEST TEACHER3",
+    "middlename": "1TEST TEACHER3",
+    "booking_rules_from": null,
+    "booking_rules_to": null,
+    "birth_country": null,
+    "teacher_lessons": [
+      {
+        "id": 23,
+        "lesson_type_id": 1,
+        "lesson_duration": 90,
+        "lesson_description": "TEST описание краткое создаваемого предмета",
+        "lesson_amount": 10000,
+        "lesson_amount_per_hour": 6666.66666666667,
+        "name": "Английский",
+        "lesson_direction": [
+          {
+            "id": 47,
+            "name": "Грамматика"
+          },
+          {
+            "id": 46,
+            "name": "Для начинающих"
+          },
+          {
+            "id": 48,
+            "name": "Для профессионалов"
+          }
+        ]
+      },
+      {
+        "id": 24,
+        "lesson_type_id": 2,
+        "lesson_duration": 120,
+        "lesson_description": "Второй предмет описание",
+        "lesson_amount": 10000,
+        "lesson_amount_per_hour": 172500,
+        "name": "Русский",
+        "lesson_direction": [
+          {
+            "id": 50,
+            "name": "Грамматика"
+          },
+          {
+            "id": 49,
+            "name": "Для начинающих"
+          },
+          {
+            "id": 51,
+            "name": "Для профессионалов"
+          }
+        ]
+      }
+    ],
+    "email": "tenr@ya.ri",
+    "avatar_url": "k",
+    "id": 19,
+    "is_veryfied": true,
+    "is_user": false,
+    "languages": [
+      {
+        "language": "Английский",
+        "language_id": 1,
+        "id": 40,
+        "language_level_id": 1,
+        "language_level_name": "Родной язык"
+      },
+      {
+        "language": "Узбекский",
+        "language_id": 4,
+        "id": 41,
+        "language_level_id": 1,
+        "language_level_name": "Родной язык"
+      }
+    ],
+    "registration_date": "2021-02-04T18:11:44.785Z",
+    "teacher_education": [
+      {
+        "id": 41,
+        "teacher_id": 19,
+        "education": "ДРОЧЕРНИЙ УНИВЕРСИТЕТ 1",
+        "education_year": "2013-2018"
+      },
+      {
+        "id": 40,
+        "teacher_id": 19,
+        "education": "ДРОЧЕРНИЙ222 УНИВЕРСИТЕТ 1",
+        "education_year": "2016-2018"
+      }
+    ],
+    "certificates": [],
+    "teacher_description": "TEST описание краткое преподавателя",
+    "passport": [
+      {
+        "id": 18,
+        "teacher_id": 19,
+        "document_url": "https://api.mydars.uz/media/passports/%D0%B1%D1%83%D1%81%D0%B8%D0%BD%D0%BA%D0%B0_GqIMYJN.png",
+        "document_name": "",
+        "is_passport": true,
+        "is_passport_reg": false,
+        "is_passport_selfie": false
+      },
+      {
+        "id": 17,
+        "teacher_id": 19,
+        "document_url": "https://api.mydars.uz/media/passports/%D0%B1%D1%83%D1%81%D0%B8%D0%BD%D0%BA%D0%B0_phYq2ns.png",
+        "document_name": "",
+        "is_passport": true,
+        "is_passport_reg": false,
+        "is_passport_selfie": false
+      },
+      {
+        "id": 15,
+        "teacher_id": 19,
+        "document_url": "https://mydars.uz/media/passports/%D0%B1%D1%83%D1%81%D0%B8%D0%BD%D0%BA%D0%B0_CyGnSUW.png",
+        "document_name": "",
+        "is_passport": true,
+        "is_passport_reg": false,
+        "is_passport_selfie": false
+      },
+      {
+        "id": 14,
+        "teacher_id": 19,
+        "document_url": "https://mydars.uz/media/passports/%D0%B1%D1%83%D1%81%D0%B8%D0%BD%D0%BA%D0%B0_Lvknf8v.png",
+        "document_name": "",
+        "is_passport": true,
+        "is_passport_reg": false,
+        "is_passport_selfie": false
+      },
+      {
+        "id": 10,
+        "teacher_id": 19,
+        "document_url": "https://mydars.uz/media/images/passports/%D0%B1%D1%83%D1%81%D0%B8%D0%BD%D0%BA%D0%B0_EnO92Z3.png",
+        "document_name": "",
+        "is_passport": true,
+        "is_passport_reg": false,
+        "is_passport_selfie": false
+      },
+      {
+        "id": 9,
+        "teacher_id": 19,
+        "document_url": "https://mydars.uz/media/images/passports/%D0%B1%D1%83%D1%81%D0%B8%D0%BD%D0%BA%D0%B0.png",
+        "document_name": "",
+        "is_passport": true,
+        "is_passport_reg": false,
+        "is_passport_selfie": false
+      }
+    ],
+    "video": [],
+    "payment_info": [
+      {
+        "id": 3,
+        "teacher_id": 19,
+        "card_number": "113331111",
+        "bank_mfo": "222221123",
+        "iban": "LV202023939399393",
+        "inn": "434434343"
+      }
+    ],
+    "teacher_scheduller": [
+      {
+        "id": 165,
+        "teacher_id": 19,
+        "start_at": "1612237500.0",
+        "start_at_string": "2021-02-02T03:45:00",
+        "end_till": "1612243800.0",
+        "end_at_string": "2021-02-02T05:30:00"
+      },
+      {
+        "id": 166,
+        "teacher_id": 19,
+        "start_at": "1612241100.0",
+        "start_at_string": "2021-02-02T04:45:00",
+        "end_till": "1612251000.0",
+        "end_at_string": "2021-02-02T07:30:00"
+      },
+      {
+        "id": 167,
+        "teacher_id": 19,
+        "start_at": "1612242900.0",
+        "start_at_string": "2021-02-02T05:15:00",
+        "end_till": "1612335600.0",
+        "end_at_string": "2021-02-03T07:00:00"
+      },
+      {
+        "id": 168,
+        "teacher_id": 19,
+        "start_at": "1612243800.0",
+        "start_at_string": "2021-02-02T05:30:00",
+        "end_till": "1612250100.0",
+        "end_at_string": "2021-02-02T07:15:00"
+      },
+      {
+        "id": 169,
+        "teacher_id": 19,
+        "start_at": "1612410300.0",
+        "start_at_string": "2021-02-04T03:45:00",
+        "end_till": "1612425600.0",
+        "end_at_string": "2021-02-04T08:00:00"
+      },
+      {
+        "id": 170,
+        "teacher_id": 19,
+        "start_at": "1612323000.0",
+        "start_at_string": "2021-02-03T03:30:00",
+        "end_till": "1612332900.0",
+        "end_at_string": "2021-02-03T06:15:00"
+      },
+      {
+        "id": 171,
+        "teacher_id": 19,
+        "start_at": "1612584000.0",
+        "start_at_string": "2021-02-06T04:00:00",
+        "end_till": "1612599300.0",
+        "end_at_string": "2021-02-06T08:15:00"
+      },
+      {
+        "id": 172,
+        "teacher_id": 19,
+        "start_at": "1612495800.0",
+        "start_at_string": "2021-02-05T03:30:00",
+        "end_till": "1612508400.0",
+        "end_at_string": "2021-02-05T07:00:00"
+      },
+      {
+        "id": 173,
+        "teacher_id": 19,
+        "start_at": "1612503000.0",
+        "start_at_string": "2021-02-05T05:30:00",
+        "end_till": "1612516500.0",
+        "end_at_string": "2021-02-05T09:15:00"
+      }
+    ],
+    "teacher_weekdays": [],
+    "teacher_experience": [
+      {
+        "id": 28,
+        "teacher_id": 19,
+        "work_experience": "INXA 1",
+        "work_experience_year": "2012-2018"
+      },
+      {
+        "id": 29,
+        "teacher_id": 19,
+        "work_experience": "ХЗ ЧТОТО  1",
+        "work_experience_year": "2012-2018"
+      }
+    ],
+    "reg_page": 6,
+    "is_self": true,
+    "is_offer_accept": true
+  },
+  "registration": false,
+  "data": {
+    "languages": {
+      "available_languages": [
+        {
+          "id": 1,
+          "language_name": "Английский"
+        },
+        {
+          "id": 2,
+          "language_name": "Русский"
+        },
+        {
+          "id": 3,
+          "language_name": "Корейский"
+        },
+        {
+          "id": 4,
+          "language_name": "Узбекский"
+        }
+      ],
+      "levels": [
+        {
+          "id": 1,
+          "level_name": "Родной язык"
+        },
+        {
+          "id": 2,
+          "level_name": "Говорю в совершенстве"
+        },
+        {
+          "id": 3,
+          "level_name": "Чтото знаю хз что"
+        }
+      ]
+    },
+    "available_lessons": [
+      {
+        "id": 1,
+        "type_name": "Английский"
+      },
+      {
+        "id": 6,
+        "type_name": "История Руси"
+      },
+      {
+        "id": 5,
+        "type_name": "литеатура"
+      },
+      {
+        "id": 3,
+        "type_name": "Немецкий"
+      },
+      {
+        "id": 2,
+        "type_name": "Русский"
+      },
+      {
+        "id": 4,
+        "type_name": "Философия"
+      }
+    ],
+    "lesson_direction": [
+      {
+        "id": 2,
+        "name": "Грамматика"
+      },
+      {
+        "id": 1,
+        "name": "Для начинающих"
+      },
+      {
+        "id": 3,
+        "name": "Для профессионалов"
+      }
+    ],
+    "birth_country": {
+      "id": 1,
+      "country_name": "Узбекистан"
+    },
+    "header_language": "ru"
+  }
+}
