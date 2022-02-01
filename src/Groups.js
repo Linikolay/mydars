@@ -280,7 +280,7 @@ class Groups extends Component {
                                                                 <div className={"container  main_no_pa cont_dfdf"}>
                                                                     <div className={"row row_line_sty mff_row"}>
 
-                                                                        <div className={" col-lg-4 col-md-4 col-sm-6 col-6 "}>
+                                                                        <div className={" col-lg-3 col-md-4 col-sm-6 col-6 "}>
 
 
                                                                             <p className={"mg_pop sers_tet"}>Начало группы</p>
@@ -295,14 +295,20 @@ class Groups extends Component {
 
                                                                         </div>
 
-                                                                        <div className={" col-lg-3 col-md-4 col-sm-6 col-6 "}>
+                                                                        <div className={" col-lg-2 col-md-4 col-sm-6 col-6 "}>
 
 
                                                                             <p className={"mg_pop sers_tet"}>Время урока</p>
 
 
                                                                         </div>
+                                                                        <div className={" col-lg-2 col-md-4 col-sm-6 col-6 "}>
 
+
+<p className={"mg_pop sers_tet"}>Цена</p>
+
+
+</div>
 
                                                                         <div className={" col-lg-2 col-md-4 col-sm-6 col-6 "}>
 
@@ -334,7 +340,7 @@ class Groups extends Component {
                                                                                         <div className={" main_no_pa cont_dfdf"}>
                                                                                             <div className={"row row_line_sty mff_row"}>
 
-                                                                                                <div className={" col-lg-4 col-md-4 col-sm-6 col-6 "}>
+                                                                                                <div className={" col-lg-3 col-md-4 col-sm-6 col-6 "}>
 
 
                                                                                                     <p className={"mg_pop"}>{moment(data.group_start_date_timestamp * 1000).format("dddd, DD MMMM, В HH:mm")}</p>
@@ -350,7 +356,7 @@ class Groups extends Component {
                                                                                                 </div>
                                                                                                 <div
 
-                                                                                                    className={" col-lg-3 ltfetrers1 col-md-4 col-sm-6 col-6 txt_rg_cen"}>
+                                                                                                    className={" col-lg-2 ltfetrers1 col-md-4 col-sm-6 col-6 txt_rg_cen"}>
 
 
                                                                                                     <div className={"mg_pop"}>{data.max_lesson_duration} мин</div>
@@ -360,7 +366,15 @@ class Groups extends Component {
 
 
 
+                                                                                                <div
 
+className={" col-lg-2 ltfetrers1 col-md-4 col-sm-6 col-6 txt_rg_cen"}>
+
+
+<div className={"mg_pop"}>{data.group_total_cost} сум</div>
+
+
+</div>
 
                                                                                                 <div
                                                                                                     className={" ltfetrers1 col-lg-2 col-md-4 col-sm-6 col-6 txt_rg"}>
@@ -380,14 +394,23 @@ class Groups extends Component {
                                                                                                                 <button className='btnediters11'
 
                                                                                                                 >Забронировать</button>
-                                                                                                            )
+                                                                                                            )  
                                                                                                          
                                                                                                         } else {
+                                                                                                            if(data.current_lessons_in_group_count == 0){
+                                                                                                                return (
+                                                                                                                    <button className='btnediters11'
+
+                                                                                                                    >Забронировать</button>
+                                                                                                                )  
+                                                                                                            }
                                                                                                             return (
                                                                                                                 <Link className='btnediters btnediters33'
                                                                                                                     to={"/paygroup/" + data.id}
                                                                                                                 >Забронировать</Link>
                                                                                                             )  
+                                                                                                            
+                                                                                                        
                                                                                                         }
                                                                                                     })()}
 

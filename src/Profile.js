@@ -2382,14 +2382,20 @@ return(
                
                 if (this.state.create.all_teacher_orders == "" || this.state.create.all_teacher_orders == undefined) {
                     return (
-                        <div className={"loadlpreload"}>
-                            <div className={"loadlpreload"}>
-                                {/* <ImpulseSpinner className={"preloaders "} size={40} frontColor="#9181F3" backColor={"#9181F3"} />  */}
-                            </div>
-                            <div className={"zaglnow"}>
-                            </div>
+                        <div>
+                                               <div className={"container"}>
+                                        <div className={"row"}>
+                                            <div className={" col-lg-12 col-md-4 col-sm-6 col-6 "}>
+        
+        
+                                                <div className={"my_gr_pr_one"}>
+                                                    <p className={"mylesss_tt"}>{this.state.lang.myuroks.text}</p>
+                                                    <button className='grGro grGroActive' onClick={this.private}>Индивидуальные уроки</button>
+<button className='grGro ' onClick={this.gr}>Групповые уроки</button>
+                                                    {/* <p className={"add_new_less_form"}><img alt="" src={profileplus} /></p> */}
+                                                </div></div></div></div>
                         </div>
-                    )
+                            )
                 } else {
                     return (
                         <div className={"wrap profile_bbl_edents"}>
@@ -2739,6 +2745,7 @@ return(
                                                             </div>
                                                             <div className={"line_lool"}></div>
                     
+
                                                             {lop.lessons_list.map((data, idx) => (
                                                                 <div className={"wd_muo_uroks"}>
                                                                   
@@ -2877,7 +2884,19 @@ return(
 
                                         if (this.state.create.all_student_orders == "" || this.state.create.all_student_orders == undefined) {
                                             return (
-                                                <p></p>
+                                        <div>
+                                                               <div className={"container"}>
+                                                        <div className={"row"}>
+                                                            <div className={" col-lg-12 col-md-4 col-sm-6 col-6 "}>
+                        
+                        
+                                                                <div className={"my_gr_pr_one"}>
+                                                                    <p className={"mylesss_tt"}>{this.state.lang.myuroks.text}</p>
+                                                                    <button className='grGro grGroActive' onClick={this.private}>Индивидуальные уроки</button>
+<button className='grGro ' onClick={this.gr}>Групповые уроки</button>
+                                                                    {/* <p className={"add_new_less_form"}><img alt="" src={profileplus} /></p> */}
+                                                                </div></div></div></div>
+                                        </div>
                                             )
                         
                                         } else {

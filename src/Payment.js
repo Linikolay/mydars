@@ -230,7 +230,7 @@ if(em.length > 0){
 
 
                                                    <p className={"main_chek_seess"}>{this.state.lang.sucbuymain.text}</p>
-                                                   <p>{this.state.lang.listlessontstext.text} <a className={"main_url_succ"} href={"/lesson"}>{this.state.lang.chousecountlessontap.text}ссылке.</a> </p>
+                                                   <p>{this.state.lang.listlessontstext.text} <a className={"main_url_succ"} href={"/lesson"}>{this.state.lang.chousecountlessontap.text}</a> </p>
                                                </div>
                                            </div>
                                        </div>

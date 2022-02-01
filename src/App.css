@@ -898,6 +898,8 @@ input:focus {
 
 .mouijjj {
     text-align: center;
+    width: 100%;
+    min-width: 100% !important;
 }
 
 .main_chek_seess {

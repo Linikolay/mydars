@@ -304,7 +304,7 @@ this.setState({
                     console.log(data)
                 this.props.mainPage.changeUnit(7)
 
-
+                window.location.reload();
 
                 }
             )

@@ -1936,7 +1936,7 @@ if(this.state.group == "" || this.state.group == undefined){
                                                                                             </p> */}
 
                                                                                                                 <p className={"no_margin dats_main_trail_right_block0 dats_main_trail_right_block01"}>
-                                                                                                                    {data.group_description} кол-во уроков {data.group_total_cost}
+                                                                                                                    {data.group_description} Цена {data.group_total_cost} сум
                                                                                                                 </p>
                                                                                                                 
                                                                                                                 <p className={"no_margin dats_main_trail_right_block1"}>

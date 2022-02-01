@@ -503,7 +503,7 @@ this.setState({
             .then((data) => {
                     console.log(data)
                     this.props.mainPage.changeUnit(6)
-
+                    window.location.reload();
                 }
             )
 

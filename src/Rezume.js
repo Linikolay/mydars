@@ -348,17 +348,18 @@ console.log(data)
             .then((data) => {
                     console.log(data)
                 this.props.mainPage.changeUnit(4)
-                    if (data.reg_page == 3) {
+                window.location.reload();
+                    // if (data.profile.reg_page == 3) {
 
-                        this.setState({
+                    //     this.setState({
 
-                            isLoaded: true,
+                    //         isLoaded: true,
 
-                        });
-                        // localStorage.setItem('hash', data);
-                         this.props.mainPage.changeUnit(4)
-                        console.log(data)
-                    }
+                    //     });
+                    //     // localStorage.setItem('hash', data);
+                    //      this.props.mainPage.changeUnit(4)
+                    //     console.log(data)
+                    // }
 
 
                 }
