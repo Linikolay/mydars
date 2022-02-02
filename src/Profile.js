@@ -6303,7 +6303,7 @@ console.log(test)
 
                                                             </div>
                                                             <div className={"col-lg-3 gr_btn_mainprofile col-md-4 col-sm-6 col-6 pddsss"}>
-                                                                <button onClick={this.group} className={"createesbtn ne_pa_data ne_pa_data213213 createbntn"}>Создать групу</button>
+                                                                <button onClick={this.group} className={"createesbtn ne_pa_data ne_pa_data213213 createbntn"}>Создать группу</button>
 
 
                                                             </div>
@@ -6456,7 +6456,7 @@ console.log(test)
                                                                     )
                                                                 } else {
                                                                     return (
-                                                                        <p>У вас нету груп</p>
+                                                                        <p>У вас нету групп</p>
                                                                     )
                                                                 }
                                                             })()}
