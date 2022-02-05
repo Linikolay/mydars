@@ -70,6 +70,8 @@ class TeacherCreate extends Component {
             birt: "",
             sex: "",
             name: "",
+            emailcodes:"",
+            emaLoad: false,
             birth_country_id: "1",
             email: '',
             languages: [],
@@ -78,9 +80,11 @@ class TeacherCreate extends Component {
             contstate: "",
             monst: [{ language_id: "111", level: "" }],
             phone: "",
+            emerror:"",
             send: "",
             enject: false,
             texterr: "",
+            emailcheck:"",
             err: false,
             code: '',
             image: null,
@@ -120,8 +124,88 @@ class TeacherCreate extends Component {
         this.handleChange1 = this.handleChange1.bind(this);
 
         this.handleChange2 = this.handleChange2.bind(this);
+        this.ema = this.ema.bind(this);
+        this.coderes = this.coderes.bind(this);
+        this.reject = this.reject.bind(this);
+        
     }
+    coderes(e){
+        console.log(e.target.value)
+        this.setState({
+            emailcodes: e.target.value
+        })
+    }
+reject(){
+    fetch('https://api.mydars.uz/api/email/code/confirm//?code=' + this.state.emailcodes, {
 
+
+        headers: {
+            // 'auth': 'ef899a6d-29d6-4130-8b59-3d95dfbcc9bd',
+
+            'Content-Type': 'application/json',
+            'auth': "ef899a6d-29d6-4130-8b59-3d95dfbcc9bd",
+            'lang': localStorage.getItem('lang'),
+            'token': localStorage.getItem('token')
+        },
+
+
+    }
+    )
+
+        // .then(res => res.json())
+        .then(res => res.json())
+        .then((data) => {
+            console.log(data)
+
+            if(data) {
+                this.setState({
+                    emailcheck: data
+                })
+            }
+         
+
+        }
+        )
+}
+    ema(){
+        console.log(this.state.emailcodes)
+        this.setState({
+            emaLoad:false,
+            emailcheck:""
+        })
+        fetch('https://api.mydars.uz/api/email/code/request/?email=' + this.state.email, {
+
+
+            headers: {
+                // 'auth': 'ef899a6d-29d6-4130-8b59-3d95dfbcc9bd',
+
+                'Content-Type': 'application/json',
+                'auth': "ef899a6d-29d6-4130-8b59-3d95dfbcc9bd",
+                'lang': localStorage.getItem('lang'),
+                'token': localStorage.getItem('token')
+            },
+
+
+        }
+        )
+
+            // .then(res => res.json())
+            .then(res => res.json())
+            .then((data) => {
+                console.log(data)
+            if(data.error == 0){
+                this.setState({
+                    emaLoad:true
+                })
+            }else{
+                this.setState({
+                    emerror:data.reason
+                })
+            }
+
+            }
+            )
+    }
     handleChange1(event) {
         // console.log(event.target.value)
         this.setState({
@@ -1085,6 +1169,39 @@ class TeacherCreate extends Component {
                                         <input onChange={this.handleemailChange} placeholder="email" type="email"
                                             className="form-control email_input" />
 
+<button className='btnchekeres' onClick={this.ema}>Проверить</button>
+
+{(() => {
+if(this.state.emaLoad==false){
+return(
+    <p className={"main_sql_change"}>{this.state.emerror}</p>
+)
+}else if(this.state.emailcheck ){
+    if(this.state.emailcheck.error == 0 ){
+    }
+}else{
+return(
+    <div>
+         <input onChange={this.coderes} placeholder="Код" type="text"
+                                            className="form-control email_input email_inputerror" />
+
+<button className='btnchekeres' onClick={this.reject}>Подтвердить код</button>
+        </div>
+)
+}
+
+
+if(this.state.emailcheck){
+    console.log(this.state.emailcheck)
+    if(this.state.emailcheck.error == 0 ){
+       return(<p className={"main_sql_change"}>{this.state.emailcheck.message}</p>) 
+    }else{
+       return(
+        <p className={"main_sql_change"}>{this.state.emailcheck.message}</p>
+       )
+    }
+}
+})()}
 
                                     </div>
 
@@ -1165,13 +1282,18 @@ class TeacherCreate extends Component {
                                         if (this.state.email == "" || this.state.name1 == "" || this.state.name2 == "" || this.state.of == false || this.state.of1 == false || this.state.of2 == false || this.state.pass1 == "" || this.state.pass == "" || this.state.name == "" || this.state.shareholders[0].language_id == "" || this.state.shareholders[0].level == "") {
                                             return (<p></p>)
                                         } else {
-                                            return (
-                                                <Link onClick={() =>
-                                                    this.saveMobile0({})
-                                                } className={"no_hover ne_pa_data"}>
-                                                    {this.state.lang.NEXTTONEXT.text} <img alt="" className={"ne_pa"} src={next} />
-                                                </Link>
-                                            )
+                                            if(this.state.emailcheck){
+                                                if(this.state.emailcheck.error == 0){
+                                                    return (
+                                                        <Link onClick={() =>
+                                                            this.saveMobile0({})
+                                                        } className={"no_hover ne_pa_data"}>
+                                                            {this.state.lang.NEXTTONEXT.text} <img alt="" className={"ne_pa"} src={next} />
+                                                        </Link>
+                                                    )
+                                                }
+                                            }
+                                       
                                         }
                                     })()}
                                     {(() => {

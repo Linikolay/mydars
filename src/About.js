@@ -1792,30 +1792,7 @@ pagLoad:true,
                                         </div>
 
 
-                                        <div className={" col-lg-3 col-md-4 col-sm-6 col-6 title_cal_obz_13"}>
-
-                                            {(() => {
-
-
-                                                if (this.state.create.profile.is_user == true) {
-                                                    return (<p></p>)
-                                                } else {
-                                                    if (this.state.editGr == true || this.state.week == true) {
-                                                  
-                                                    } else {
-                                                        return (
-                                                            <Link onClick={this.setg} className="nj22">
-                                                                Групповые занятия
-                                                            </Link>
-                                                        )
-                                                    }
-                                                }
-
-
-
-                                            })()}
-
-                                        </div>
+                                     
                                         <div className={" col-lg-3 col-md-4 col-sm-6 col-6 title_cal_obz_13"}>
 
                                             {(() => {
@@ -1826,7 +1803,7 @@ pagLoad:true,
                                                 } else {
                                                     if (this.state.edit == true) {
                                                         return (
-                                                            <Link onClick={this.set1} className="nj22">
+                                                            <Link onClick={this.set1} className=" grGro grGro33">
                                                                 {this.state.lang.done.text}
                                                             </Link>
                                                         )
@@ -1835,7 +1812,7 @@ pagLoad:true,
                                                          
                                                         }else{
                                                             return (
-                                                                <Link onClick={this.set} className="nj22">
+                                                                <Link onClick={this.set} className=" grGro grGro33">
                                                                     {this.state.lang.settinggraphice.text}
                                                                 </Link>
                                                             )
@@ -1851,7 +1828,30 @@ pagLoad:true,
                                         </div>
 
 
+                                        <div className={" col-lg-3 col-md-4 col-sm-6 col-6 title_cal_obz_13"}>
 
+{(() => {
+
+
+    if (this.state.create.profile.is_user == true) {
+        return (<p></p>)
+    } else {
+        if (this.state.editGr == true || this.state.week == true) {
+      
+        } else {
+            return (
+                <Link onClick={this.setg} className=" grGro grGro33">
+                    Групповой график
+                </Link>
+            )
+        }
+    }
+
+
+
+})()}
+
+</div>
 
                                     </div></div>
 

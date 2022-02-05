@@ -1,9 +1,9 @@
 /**
  * Created by Nikolay on 17.01.2021.
  */
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import {withRouter} from "react-router-dom";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import InputNumber from 'react-input-number';
 import {
@@ -56,7 +56,7 @@ import next from './images/next.svg'
 import reg from './images/reg.svg'
 import auth from './images/auth.svg'
 class Reg extends Component {
-    state = {showModal: false};
+    state = { showModal: false };
 
     constructor() {
         super()
@@ -67,25 +67,30 @@ class Reg extends Component {
             of: false,
             of1: false,
             pass: "998",
+            enject: false,
+            emailcheck: "",
+            emerror: "",
             email: "",
-            lang:"",
+            lang: "",
             langLoad: false,
             phone: "",
+            emaLoad: false,
             status: "",
             sms: "",
+            emailcodes: "",
             of1: false,
             texterror: "",
-            name:"",
+            name: "",
             err: false,
-            fam:"",
+            fam: "",
             phoneGet: false,
-            em:"",
+            em: "",
             of2: false,
-            dd:"",
-            mm:"",
-            yy:"",
-            pas1:"",
-            pas2:""
+            dd: "",
+            mm: "",
+            yy: "",
+            pas1: "",
+            pas2: ""
         }
 
         this.handler = this.handler.bind(this);
@@ -119,8 +124,91 @@ class Reg extends Component {
         this.handlemor6 = this.handlemor6.bind(this);
         this.handlemor7 = this.handlemor7.bind(this);
         this.handlemor8 = this.handlemor8.bind(this);
-
+        this.ema = this.ema.bind(this);
+        this.coderes = this.coderes.bind(this);
+        this.reject = this.reject.bind(this);
     }
+
+
+    coderes(e) {
+        console.log(e.target.value)
+        this.setState({
+            emailcodes: e.target.value
+        })
+    }
+    reject() {
+        fetch('https://api.mydars.uz/api/email/code/confirm//?code=' + this.state.emailcodes, {
+
+
+            headers: {
+                // 'auth': 'ef899a6d-29d6-4130-8b59-3d95dfbcc9bd',
+
+                'Content-Type': 'application/json',
+                'auth': "ef899a6d-29d6-4130-8b59-3d95dfbcc9bd",
+                'lang': localStorage.getItem('lang'),
+                'token': localStorage.getItem('token')
+            },
+
+
+        }
+        )
+
+            // .then(res => res.json())
+            .then(res => res.json())
+            .then((data) => {
+                console.log(data)
+
+                if (data) {
+                    this.setState({
+                        emailcheck: data
+                    })
+                }
+
+
+            }
+            )
+    }
+    ema() {
+        console.log(this.state.emailcodes)
+        this.setState({
+            emaLoad: false,
+            emailcheck: ""
+        })
+        fetch('https://api.mydars.uz/api/email/code/request/?email=' + this.state.em, {
+
+
+            headers: {
+                // 'auth': 'ef899a6d-29d6-4130-8b59-3d95dfbcc9bd',
+
+                'Content-Type': 'application/json',
+                'auth': "ef899a6d-29d6-4130-8b59-3d95dfbcc9bd",
+                'lang': localStorage.getItem('lang'),
+                'token': localStorage.getItem('token')
+            },
+
+
+        }
+        )
+
+            // .then(res => res.json())
+            .then(res => res.json())
+            .then((data) => {
+                console.log(data)
+                if (data.error == 0) {
+                    this.setState({
+                        emaLoad: true
+                    })
+                } else {
+                    this.setState({
+                        emerror: data.reason
+                    })
+                }
+
+            }
+            )
+    }
+
+
     handleAdd4(event) {
         const main = {
 
@@ -129,11 +217,11 @@ class Reg extends Component {
             "is_user": true
         }
         console.log(main)
-        if(this.state.pas1 == this.state.pas2){
+        if (this.state.pas1 == this.state.pas2) {
             fetch('https://api.mydars.uz/api/registration/', {
                 method: 'POST',
-    
-    
+
+
                 headers: {
                     // 'auth': 'ef899a6d-29d6-4130-8b59-3d95dfbcc9bd',
                     // 'lang': 'uz',
@@ -143,49 +231,49 @@ class Reg extends Component {
                     'token': localStorage.getItem('token')
                 },
                 body: JSON.stringify({
-    
-                   "name": this.state.name,
-                   "surename": this.state.fam,
-                   "email": this.state.em,
-                    "date_of_birth": this.state.dd+"." + this.state.mm + "." + this.state.yy,
+
+                    "name": this.state.name,
+                    "surename": this.state.fam,
+                    "email": this.state.em,
+                    "date_of_birth": this.state.dd + "." + this.state.mm + "." + this.state.yy,
                     "password": this.state.pas1
                 })
-    
+
             })
-    
-    
+
+
                 .then(res => res.json())
-    
+
                 .then((data) => {
-    if(data.error){
-        this.setState({
-            err: true,
-            texterror: data.reason
-        })
-    }else{
-          if (data.profile.is_user == true) {
+                    if (data.error) {
+                        this.setState({
+                            err: true,
+                            texterror: data.reason
+                        })
+                    } else {
+                        if (data.profile.is_user == true) {
                             console.log("dfdfdfdffddddddddddddddddddddddds")
                             localStorage.setItem('is_user', true)
                             window.location.replace("/");
-    
+
                         }
-    }
-                        console.log(data)
-                        // if (data.profile.is_user == true) {
-                        //     console.log("dfdfdfdffddddddddddddddddddddddds")
-                        //     localStorage.setItem('is_user', true)
-                        //     window.location.replace("/");
-    
-                        // }
                     }
+                    console.log(data)
+                    // if (data.profile.is_user == true) {
+                    //     console.log("dfdfdfdffddddddddddddddddddddddds")
+                    //     localStorage.setItem('is_user', true)
+                    //     window.location.replace("/");
+
+                    // }
+                }
                 )
-        }else{
+        } else {
             this.setState({
                 err: true,
                 texterror: "Пароли не совпадают"
             })
         }
-        
+
     }
 
 
@@ -216,6 +304,7 @@ class Reg extends Component {
             dd: event.target.value
         })
     }
+
     handlemor5(event) {
         console.log(event.target.value)
         this.setState({
@@ -293,13 +382,13 @@ class Reg extends Component {
 
             .then((data) => {
 
-                    console.log(data)
-                    if (data.status == 200) {
-                        localStorage.setItem('token', data.token);
+                console.log(data)
+                if (data.status == 200) {
+                    localStorage.setItem('token', data.token);
 
-                        window.location.reload();
-                    }
+                    window.location.reload();
                 }
+            }
             )
     }
 
@@ -307,21 +396,21 @@ class Reg extends Component {
 
         this.setState({
             pass: event.target.value,
-      
+
         })
         console.log(event.target.value)
-        if(event.target.value.length == 12){
+        if (event.target.value.length == 12) {
             this.setState({
-         
+
                 phoneGet: true,
             })
-        }else{
+        } else {
             this.setState({
-         
+
                 phoneGet: false,
-            })   
+            })
         }
-    
+
     }
 
     handleAdd(event) {
@@ -359,29 +448,29 @@ class Reg extends Component {
 
             .then((data) => {
 
-                    console.log(data)
-                    if (data.status == 200) {
-                        this.setState({
-                            status: 200
-                        })
-                    }
+                console.log(data)
+                if (data.status == 200) {
+                    this.setState({
+                        status: 200
+                    })
                 }
+            }
             )
     }
 
     handleemailChange(event) {
         console.log(event.target.value)
-        this.setState({email: event.target.value})
+        this.setState({ email: event.target.value })
     }
 
     handleemailChange1(event) {
-        this.setState({email: event.target.value})
+        this.setState({ email: event.target.value })
     }
 
     handler2 = (e) => {
-        const {target} = e;
+        const { target } = e;
         const value = target.type == 'checkbox' ? target.checked : target.value;
-        const {name} = target;
+        const { name } = target;
         console.log(value)
         if (value == false) {
             this.setState({
@@ -394,9 +483,9 @@ class Reg extends Component {
         }
     };
     handler5 = (e) => {
-        const {target} = e;
+        const { target } = e;
         const value = target.type == 'checkbox' ? target.checked : target.value;
-        const {name} = target;
+        const { name } = target;
         console.log(value)
         if (value == false) {
             this.setState({
@@ -410,9 +499,9 @@ class Reg extends Component {
     };
 
     handler = (e) => {
-        const {target} = e;
+        const { target } = e;
         const value = target.type == 'checkbox' ? target.checked : target.value;
-        const {name} = target;
+        const { name } = target;
         console.log(value)
         if (value == false) {
             this.setState({
@@ -425,9 +514,9 @@ class Reg extends Component {
         }
     };
     handler1 = (e) => {
-        const {target} = e;
+        const { target } = e;
         const value = target.type == 'checkbox' ? target.checked : target.value;
-        const {name} = target;
+        const { name } = target;
         console.log(value)
         if (value == false) {
             this.setState({
@@ -540,11 +629,11 @@ class Reg extends Component {
             .then(res => res.json())
 
             .then((data) => {
-                    console.log(data)
-                    this.props.mainPage.changeUnit(4)
+                console.log(data)
+                this.props.mainPage.changeUnit(4)
 
 
-                }
+            }
             )
 
 
@@ -575,27 +664,27 @@ class Reg extends Component {
             .then(res => res.json())
 
             .then((data) => {
+                console.log(data)
+                if (data.reg_page == 3) {
+
+                    this.setState({
+
+                        isLoaded: true,
+
+                    });
+                    // localStorage.setItem('hash', data);
                     console.log(data)
-                    if (data.reg_page == 3) {
-
-                        this.setState({
-
-                            isLoaded: true,
-
-                        });
-                        // localStorage.setItem('hash', data);
-                        console.log(data)
-                    }
-
-
                 }
+
+
+            }
             )
 
     }
     handleChangeln = e => {
 
 
-        const {shareholders} = this.state
+        const { shareholders } = this.state
 
         const clonePhoneNumbers = [...shareholders];
 
@@ -616,7 +705,7 @@ class Reg extends Component {
         //      console.log(obj)
 
 
-        const {shareholders} = this.state
+        const { shareholders } = this.state
 
         const clonePhoneNumbers = [...shareholders];
 
@@ -643,7 +732,7 @@ class Reg extends Component {
         console.log(e.target.name)
 
 
-        const {shareholders1} = this.state
+        const { shareholders1 } = this.state
 
         const clonePhoneNumbers = [...shareholders1];
 
@@ -663,7 +752,7 @@ class Reg extends Component {
 
         console.log(e.target.name)
 
-        const {shareholders1} = this.state
+        const { shareholders1 } = this.state
 
         const clonePhoneNumbers = [...shareholders1];
 
@@ -685,11 +774,11 @@ class Reg extends Component {
     }
 
     handleAddShareholder = () => {
-        this.setState({shareholders: this.state.shareholders.concat([{education_year: '', education: ""}])});
+        this.setState({ shareholders: this.state.shareholders.concat([{ education_year: '', education: "" }]) });
     }
 
     handleRemoveShareholder = (idx) => () => {
-        this.setState({shareholders: this.state.shareholders.filter((s, sidx) => idx !== sidx)});
+        this.setState({ shareholders: this.state.shareholders.filter((s, sidx) => idx !== sidx) });
     }
 
 
@@ -703,300 +792,347 @@ class Reg extends Component {
     }
 
     handleRemoveShareholder1 = (idx) => () => {
-        this.setState({shareholders1: this.state.shareholders1.filter((s, sidx) => idx !== sidx)});
+        this.setState({ shareholders1: this.state.shareholders1.filter((s, sidx) => idx !== sidx) });
     }
 
 
     render() {
-const {langLoad} = this.state
-if(!langLoad){
-    return(
-        <p></p>
-    )
-}else{
-    if (localStorage.getItem('token') == null) {
-        return (
-            <div className={"wrap wrap2 warw123123"}>
-                <div className={"container main_container"}>
-                    <div className="row">
-
-
-                        <div className={"container main_container main_container32423"}>
+        const { langLoad } = this.state
+        if (!langLoad) {
+            return (
+                <p></p>
+            )
+        } else {
+            if (localStorage.getItem('token') == null) {
+                return (
+                    <div className={"wrap wrap2 warw123123"}>
+                        <div className={"container main_container"}>
                             <div className="row">
 
-                                <div className="row warw123123 col-lg-6 col-md-4 col-sm-6 col-6 block_main-2 row_execute">
 
-                                <img alt="" className={"rg_aytt rg_aytt11"} src={auth} />
+                                <div className={"container main_container main_container32423"}>
+                                    <div className="row">
 
-                                </div>
+                                        <div className="row warw123123 col-lg-6 col-md-4 col-sm-6 col-6 block_main-2 row_execute">
 
-                                <div className="row col-lg-3 warw123123 col-md-4 col-sm-6 col-6 block_main-2 row_execute">
-                                   
-                                    {(() => {
+                                            <img alt="" className={"rg_aytt rg_aytt11"} src={auth} />
 
+                                        </div>
 
-                                        if (this.state.status == "" && localStorage.getItem('token') == null) {
-                                      
-                                            return (
-                                                <div className="bl_pop bl_pop11">
-                                                    <p className="avt_text avt_text_1 avt_text_155">{this.state.lang.registeruchenijkk.text}</p>
+                                        <div className="row col-lg-3 warw123123 col-md-4 col-sm-6 col-6 block_main-2 row_execute">
+
+                                            {(() => {
 
 
-                                                    <p className="avt_text bt_txt33">{this.state.lang.vidoynomernumbers.text}</p>
-                                                    <input
-                                                        onChange={this.handlePass}
-                                                        placeholder="998"
-                                                        type="text"
-                                                        value={this.state.pass}
-                                                        className="form-control email_input last_name_class_inp"/>
-                                                                                                
-<div className={""}>
-<label className="checkbox">
-                                        <input className="custom-checkbox" type="checkbox" onChange={this.handler2}/>
-                            
-                                       <span></span>
-                                    </label>
-                                    <a href={"https://mydars.uz/docs/privacy_policy.html"} className={"mopppp primiisr_009"}>
-                                        
-                                    {this.state.lang.soglsie.text} 
-                                        
-                                        
-                                        </a>
+                                                if (this.state.status == "" && localStorage.getItem('token') == null) {
+
+                                                    return (
+                                                        <div className="bl_pop bl_pop11">
+                                                            <p className="avt_text avt_text_1 avt_text_155">{this.state.lang.registeruchenijkk.text}</p>
 
 
-                                
-                                    
-                                    {/* <a href={"/docs/ethical_code_of_tutors.html"} target="_blank" className={"mopppp"}>{this.state.lang.ETNICHESKCODECS.text} </a> */}
+                                                            <p className="avt_text bt_txt33">{this.state.lang.vidoynomernumbers.text}</p>
+                                                            <input
+                                                                onChange={this.handlePass}
+                                                                placeholder="998"
+                                                                type="text"
+                                                                value={this.state.pass}
+                                                                className="form-control email_input last_name_class_inp" />
 
-                                </div>
-                                                        {(() => {   
+                                                            <div className={""}>
+                                                                <label className="checkbox">
+                                                                    <input className="custom-checkbox" type="checkbox" onChange={this.handler2} />
 
-                                                        if(this.state.of2 == false && this.state.phoneGet ==false){
-                                                        return(
-                                                            <div></div>
-                                                        )
-                                                        }else if(this.state.of2==true & this.state.phoneGet==true){
-                                                            return(
-                                                           <Link className={"no_decoration"}> 
-                                                                <div onClick={this.handleAdd} className="btn_vh">
-                                                                <p className="bt_txt no_decoration">{this.state.lang.sendcodesms.text}</p>
-                                                                
+                                                                    <span></span>
+                                                                </label>
+                                                                <a href={"https://mydars.uz/docs/privacy_policy.html"} className={"mopppp primiisr_009"}>
+
+                                                                    {this.state.lang.soglsie.text}
+
+
+                                                                </a>
+
+
+
+
+                                                                {/* <a href={"/docs/ethical_code_of_tutors.html"} target="_blank" className={"mopppp"}>{this.state.lang.ETNICHESKCODECS.text} </a> */}
+
                                                             </div>
-                                                            </Link>
-                                                            )
-                                                        }
+                                                            {(() => {
 
-                                                        })()}
-                                                
+                                                                if (this.state.of2 == false && this.state.phoneGet == false) {
+                                                                    return (
+                                                                        <div></div>
+                                                                    )
+                                                                } else if (this.state.of2 == true & this.state.phoneGet == true) {
+                                                                    return (
+                                                                        <Link className={"no_decoration"}>
+                                                                            <div onClick={this.handleAdd} className="btn_vh">
+                                                                                <p className="bt_txt no_decoration">{this.state.lang.sendcodesms.text}</p>
 
-                                                </div>
+                                                                            </div>
+                                                                        </Link>
+                                                                    )
+                                                                }
 
-                                            )
-                                        } else if (this.state.status == 200 && localStorage.getItem('token') == null) {
-                                            return (
-                                                <div className="bl_pop">
-                                                    <p className="avt_text avt_text_1">{this.state.lang.vidoyodsmschanges.text}</p>
-
-
-                                                    <p className="avt_text bt_txt33">{this.state.lang.coideal.text}</p>
-                                                    <input
-                                                        onChange={this.handlePass1}
-                                                        placeholder="****"
-                                                        type="text" value={this.state.sms}
-                                                        className="form-control email_input last_name_class_inp"/>
-
-                                                    <Link className={"no_decoration"}>
-                                                    <div onClick={this.handleAdd1} className="btn_vh">
-                                                        <p className="bt_txt ">{this.state.lang.vhodisan.text}</p>
-                                                    </div></Link>
-
-                                                </div>
-
-                                            )
-                                        }
+                                                            })()}
 
 
-                                    })()}
-                                    <p>{this.state.lang.prepodrelregisterend.text}
-                                    <p><Link to={"/teachercreate"}>{this.state.lang.statprpodovat.text}</Link></p>
+                                                        </div>
 
-                                    </p>
+                                                    )
+                                                } else if (this.state.status == 200 && localStorage.getItem('token') == null) {
+                                                    return (
+                                                        <div className="bl_pop">
+                                                            <p className="avt_text avt_text_1">{this.state.lang.vidoyodsmschanges.text}</p>
 
+
+                                                            <p className="avt_text bt_txt33">{this.state.lang.coideal.text}</p>
+                                                            <input
+                                                                onChange={this.handlePass1}
+                                                                placeholder="****"
+                                                                type="text" value={this.state.sms}
+                                                                className="form-control email_input last_name_class_inp" />
+
+                                                            <Link className={"no_decoration"}>
+                                                                <div onClick={this.handleAdd1} className="btn_vh">
+                                                                    <p className="bt_txt ">{this.state.lang.vhodisan.text}</p>
+                                                                </div></Link>
+
+                                                        </div>
+
+                                                    )
+                                                }
+
+
+                                            })()}
+                                            <p>{this.state.lang.prepodrelregisterend.text}
+                                                <p><Link to={"/teachercreate"}>{this.state.lang.statprpodovat.text}</Link></p>
+
+                                            </p>
+
+                                        </div>
+
+
+                                    </div>
                                 </div>
 
 
                             </div>
+
                         </div>
-
-
                     </div>
+                )
+            } else {
 
-                </div>
-            </div>
-        )
-    } else {
+                return (
 
+                    <div className="wrap wrap2">
+                        <div className={"container main_container"}>
+                            <div className="row">
+                                <div
+                                    className="row col-lg-12 col-md-4 col-sm-6 col-6 block_main-2 row_execute row_execute1">
+
+
+                                    <div className="bl_pop  row_execute13">
+                                        <p className="avt_text avt_text_1">{this.state.lang.eshekochtotouee.text}</p>
+
+
+                                        <p className="avt_text bt_txt33">{this.state.lang.ukazimena.text}</p>
+                                        <input
+                                            autocomplete="off"
+                                            onChange={this.handlemor1}
+                                            placeholder=""
+                                            type="text"
+                                            className="form-control email_input last_name_class_inp" />
+
+
+                                        <p className="avt_text bt_txt33">{this.state.lang.ukajefamily.text}</p>
+                                        <input
+                                            autocomplete="off"
+                                            onChange={this.handlemor2}
+                                            placeholder=""
+                                            type="text"
+                                            className="form-control email_input last_name_class_inp" />
+
+
+                                        <p className="avt_text bt_txt33">{this.state.lang.ukajiemail.text}</p>
+                                        <input
+                                            autocomplete="off"
+                                            onChange={this.handlemor3}
+                                            placeholder="Email"
+                                            type="text"
+                                            className="form-control email_input last_name_class_inp" />
+
+                                        <button className='btnchekeres' onClick={this.ema}>Проверить</button>
+
+                                        {(() => {
+                                            if (this.state.emaLoad == false) {
+                                                return (
+                                                    <p className={"main_sql_change"}>{this.state.emerror}</p>
+                                                )
+                                            } else if (this.state.emailcheck) {
+                                                if (this.state.emailcheck.error == 0) {
+                                                }
+                                            } else {
+                                                return (
+                                                    <div>
+                                                        <input onChange={this.coderes} placeholder="Код" type="text"
+                                                            className="form-control email_input last_name_class_inpr" />
+
+                                                        <button className='btnchekeres' onClick={this.reject}>Подтвердить код</button>
+                                                    </div>
+                                                )
+                                            }
+
+
+                                            if (this.state.emailcheck) {
+                                                console.log(this.state.emailcheck)
+                                                if (this.state.emailcheck.error == 0) {
+                                                    return (<p className={"main_sql_change"}>{this.state.emailcheck.message}</p>)
+                                                } else {
+                                                    return (
+                                                        <p className={"main_sql_change"}>{this.state.emailcheck.message}</p>
+                                                    )
+                                                }
+                                            }
+                                        })()}
+
+                                        <p className="avt_text bt_txt33"> {this.state.lang.datebirth.text}</p>
+
+                                        <div className="mi_332">
+                                            <textarea
+                                                autocomplete="off"
+                                                pattern="[0-9]*"
+                                                onChange={this.handlemor4}
+                                                placeholder={this.state.lang.day222.text}
+
+                                                className="form-control email_input last_name_class_inp daes" />
+
+                                            <textarea
+                                                autocomplete="off"
+                                                onChange={this.handlemor5}
+                                                placeholder={this.state.lang.month11.text}
+
+                                                className="form-control email_input last_name_class_inp daes" />
+
+                                            <textarea
+                                                autocomplete="off"
+                                                onChange={this.handlemor6}
+                                                placeholder={this.state.lang.yersmo.text}
+
+                                                className="form-control email_input last_name_class_inp daes" />
+
+
+                                        </div>
+
+
+
+
+
+                                        <p className="avt_text bt_txt33">{this.state.lang.passwordesminis.text}</p>
+                                        <input
+                                            autocomplete="off"
+                                            onChange={this.handlemor7}
+                                            placeholder="****"
+                                            type="password"
+                                            className="form-control email_input last_name_class_inp" />
+
+
+
+                                        <p className="avt_text bt_txt33">{this.state.lang.retrypasswords.text}</p>
+                                        <input
+                                            autocomplete="off"
+                                            onChange={this.handlemor8}
+                                            placeholder="****"
+                                            type="password"
+                                            className="form-control email_input last_name_class_inp" />
+
+                                        <div className={""}>
+                                            <label className="checkbox">
+                                                <input className="custom-checkbox" type="checkbox" onChange={this.handler5} />
+
+                                                <span></span>
+                                            </label>
+                                            <a href={"https://mydars.uz/docs/terms_and_conditions.html"} className={"mopppp primiisr_009"}>
+
+                                                {this.state.lang.soglominet.text}
+
+
+                                            </a>
+
+
+
+
+                                            {/* <a href={"/docs/ethical_code_of_tutors.html"} target="_blank" className={"mopppp"}>{this.state.lang.ETNICHESKCODECS.text} </a> */}
+
+                                        </div>
+
+
+
+
+                                        {(() => {
+
+                                            if (this.state.of2 == false) {
+                                                return (
+                                                    <div></div>
+                                                )
+                                            } else if (this.state.of2 == true && this.state.name && this.state.fam && this.state.em &&
+                                                this.state.dd && 
+                                                this.state.mm && 
+                                                this.state.yy && 
+                                                this.state.pas1 && 
+                                                this.state.pas2
+                                                ) {
+
+if(this.state.emailcheck){
+    if(this.state.emailcheck.error == 0 ){
         return (
+            <Link className={"no_decoration"}>
 
-            <div className="wrap wrap2">
-                <div className={"container main_container"}>
-                    <div className="row">
-                        <div
-                            className="row col-lg-12 col-md-4 col-sm-6 col-6 block_main-2 row_execute row_execute1">
-
-
-                            <div className="bl_pop  row_execute13">
-                                <p className="avt_text avt_text_1">{this.state.lang.eshekochtotouee.text}</p>
-
-
-                                <p className="avt_text bt_txt33">{this.state.lang.ukazimena.text}</p>
-                                <input
-                               autocomplete="off"
-                                    onChange={this.handlemor1}
-                                    placeholder=""
-                                    type="text"
-                                    className="form-control email_input last_name_class_inp"/>
-
-
-                                <p className="avt_text bt_txt33">{this.state.lang.ukajefamily.text}</p>
-                                <input
-                                autocomplete="off"
-                                    onChange={this.handlemor2}
-                                    placeholder=""
-                                    type="text"
-                                    className="form-control email_input last_name_class_inp"/>
-
-
-                                <p className="avt_text bt_txt33">{this.state.lang.ukajiemail.text}</p>
-                                <input
-                           autocomplete="off"
-                                    onChange={this.handlemor3}
-                                    placeholder=""
-                                    type="text"
-                                    className="form-control email_input last_name_class_inp"/>
-
-
-                                <p className="avt_text bt_txt33"> {this.state.lang.datebirth.text}</p>
-
-                                <div className="mi_332">
-                                    <textarea
-                                    autocomplete="off"
-                                    pattern="[0-9]*"
-                                    onChange={this.handlemor4}
-                                    placeholder={this.state.lang.day222.text}
-                                    
-                                    className="form-control email_input last_name_class_inp daes"/>
-
-                                    <textarea
-                                    autocomplete="off"
-                                        onChange={this.handlemor5}
-                                        placeholder={this.state.lang.month11.text}
-                                        
-                                        className="form-control email_input last_name_class_inp daes"/>
-
-                                    <textarea
-                                    autocomplete="off"
-                                        onChange={this.handlemor6}
-                                        placeholder={this.state.lang.yersmo.text}
-                                     
-                                        className="form-control email_input last_name_class_inp daes"/>
-
-
-                                </div>
-
-
-
-
-
-                                <p className="avt_text bt_txt33">{this.state.lang.passwordesminis.text}</p>
-                                <input
-                                autocomplete="off"
-                                    onChange={this.handlemor7}
-                                    placeholder="****"
-                                    type="password"
-                                    className="form-control email_input last_name_class_inp"/>
-
-
-
-                                <p className="avt_text bt_txt33">{this.state.lang.retrypasswords.text}</p>
-                                <input
-                                autocomplete="off"
-                                    onChange={this.handlemor8}
-                                    placeholder="****"
-                                    type="password"
-                                    className="form-control email_input last_name_class_inp"/>
-
-<div className={""}>
-<label className="checkbox">
-                                        <input className="custom-checkbox" type="checkbox" onChange={this.handler5}/>
-                            
-                                       <span></span>
-                                    </label>
-                                    <a href={"https://mydars.uz/docs/terms_and_conditions.html"} className={"mopppp primiisr_009"}>
-                                        
-                                    {this.state.lang.soglominet.text}  
-                                        
-                                        
-                                        </a>
-
-
-                                
-                                    
-                                    {/* <a href={"/docs/ethical_code_of_tutors.html"} target="_blank" className={"mopppp"}>{this.state.lang.ETNICHESKCODECS.text} </a> */}
-
-                                </div>
-
-
-
-
-                                {(() => {   
-
-if(this.state.of2 == false ){
-return(
-<div></div>
-)
-}else if(this.state.of2==true){
-return(
-    <Link className={"no_decoration"}>
-
-    <p onClick={this.handleAdd4} className="btn_vh">
-                                            <p className="bt_txt ">{this.state.lang.registrtxt.text}</p>
-                                        </p></Link>
-)
-}
-
-})()}
-
-
-
-
-
-
-
-
-                                {(() => {
-if(this.state.err == false){
-
-}else{
-return(
-  <p className={"errtext"}>
-      {this.state.texterror}
-  </p>
-)
-}
-})()}
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+                <p onClick={this.handleAdd4} className="btn_vh">
+                    <p className="bt_txt ">{this.state.lang.registrtxt.text}</p>
+                </p></Link>
         )
-
     }
 }
-       
+ 
+
+                                           
+                                            }
+
+                                        })()}
+
+
+
+
+
+
+
+
+                                        {(() => {
+                                            if (this.state.err == false) {
+
+                                            } else {
+                                                return (
+                                                    <p className={"errtext"}>
+                                                        {this.state.texterror}
+                                                    </p>
+                                                )
+                                            }
+                                        })()}
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                )
+
+            }
+        }
+
 
 
     }

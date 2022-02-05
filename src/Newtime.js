@@ -315,7 +315,7 @@ export default class Newtime extends Component<{}, State> {
         if (eventInfo.isMirror) {
             // console.log(eventInfo.event.start);
         }
-        // console.log(eventInfo)
+        console.log(eventInfo)
 
         if (eventInfo.event._def.extendedProps.is_active == true && eventInfo.event._def.extendedProps.redy_to_lesson == true) {
             return (

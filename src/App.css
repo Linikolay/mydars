@@ -2067,6 +2067,7 @@ border: 1px solid rgba(145, 129, 243, 1);
     font-weight: bold;
     border: 1px solid #DFDFE4;
     border-radius: 7px;
+    padding: 0px;
     height: 42px;
 
 }
@@ -3424,7 +3425,8 @@ iframe {
 .title_cal_obz_13 {
     text-align: right;
     font-weight: 700;
-    margin-top: 35px;
+    margin-top: 24px;
+    margin-bottom: 10px;
 }
 
 .avatar_cald {
@@ -5994,3 +5996,34 @@ margin-left: 12px;
 padding-bottom: 6px;
 box-shadow: none;
 }
+
+
+.deleted{
+background-color: red;
+color: white;
+}
+.deletednoactive{
+    
+}
+.whta_histtest {
+    padding: 0px;
+    padding-left: 24px;
+    margin: 0px;
+    }
+    
+    .btnchekeres{
+        color: #fff;
+background-color: #9281f3;
+border-radius: 7px;
+padding: 11px 20px;
+border: 0px;
+margin-top: 5px;
+    }
+    .email_inputerror{
+        margin-top: 10px;
+    }
+    
+    .grGro33:hover{
+text-decoration: none;
+color: white;
+    }
