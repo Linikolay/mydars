@@ -2192,7 +2192,7 @@ if (this.state.rand == "" || this.state.rand == undefined || this.state.rand.ord
                     <div className={" col-lg-12 col-md-4 col-sm-6 col-6 "}>
                         <div className={"my_gr_pr_one"}>
                             <p className={"mylesss_tt"}>{this.state.lang.myuroks.text}</p>
-<button className='grGro ' onClick={this.private}>Индивидуальные уроки</button>
+                        <button className='grGro ' onClick={this.private}>Индивидуальные уроки</button>
 
                             {/* <p className={"add_new_less_form"}>{this.state.lang.newkursmain.text}<img alt="" src={profileplus} /></p> */}
                         </div>
@@ -2238,12 +2238,263 @@ if (this.state.rand == "" || this.state.rand == undefined || this.state.rand.ord
                                     <div className={" col-lg-12 col-md-4 col-sm-6 col-6 "}>
                                         <div className={"my_gr_pr_one"}>
                                             <p className={"mylesss_tt"}>{this.state.lang.myuroks.text}</p>
-                                            <button className='grGro grGroActive' onClick={this.private}>Индивидуальные уроки</button>
-
+                                            <button className='grGro grGroActive' >Индивидуальные уроки</button>
+                                          
                                            
                                             {/* <p className={"add_new_less_form"}>{this.state.lang.newkursmain.text}<img alt="" src={profileplus} /></p> */}
                                         </div>
-                                      
+                                        {console.log(this.state.newline)}
+                                        {this.state.newline.map((lop, index) => (
+                                            <div className={"whta_hist"}>
+                                                <div className={" main_no_pa"}>
+                                                    <div className={"row row_line_sty"}>
+                                                        <div className={" col-lg-12 col-md-4 col-sm-6 col-6 pddsss"}>
+                                                            <div className={"gr_nameff11"}>
+                                                                <img alt="" className={"mini_avatar_fulcal"} src={lop.student__avatar_url}></img>
+                                                            </div>
+
+                                                            <div className={"gr_nameff22"}>
+
+                                                                <p className="gr_nameff2244">{lop.student__name}</p>
+                                                                <p>Студент</p>
+                                                                {/* {console.log(lop)} */}
+                                                            </div>
+
+
+                                                        </div>
+                                                        <div className={"line_lool"}></div>
+                                                        <div className={" col-lg-12 col-md-4 col-sm-6 col-6 pddsss"}>
+
+                                                            <div className={" main_no_pa cont_dfdf"}>
+                                                                <div className={"row row_line_sty mff_row"}>
+
+                                                                    <div className={" col-lg-4 col-md-4 col-sm-6 col-6 "}>
+
+
+                                                                        <p className={"mg_pop sers_tet"}>{this.state.lang.DATEUROKS.text}</p>
+
+
+                                                                    </div>
+                                                                    <div className={" col-lg-4 col-md-4 col-sm-6 col-6 "}>
+
+
+                                                                        <p className={"mg_pop sers_tet"}>{this.state.lang.STATUS.text}</p>
+
+
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+                                                        <div className={"line_lool"}></div>
+
+                                                        {lop.lessons_pagination.all_student_lessons.map((data, idx) => (
+                                                            <div className={"wd_muo_uroks"}>
+                                                                {(() => {
+                                                                    if (data.is_paid == true) {
+                                                                        return (
+
+                                                                            <div className={" col-lg-12 col-md-4 col-sm-6 col-6 pddsss"}>
+
+
+
+                                                                                <div className={" main_no_pa cont_dfdf"}>
+                                                                                    <div className={"row row_line_sty mff_row"}>
+
+                                                                                        <div className={" col-lg-4 col-md-4 col-sm-6 col-6 "}>
+
+
+                                                                                            <p className={"mg_pop"}>{moment(data.lesson_start_timestamp_new * 1000).format("dddd, DD MMMM, В HH:mm")}</p>
+
+
+                                                                                        </div>
+                                                                                        <div className={" col-lg-2 col-md-4 col-sm-6 col-6 "}>
+
+
+                                                                                            <p className={"mg_pop"}>{data.status_name}</p>
+
+
+                                                                                        </div>
+                                                                                        {(() => {
+                                                                                            if (data.is_ended == true) {
+                                                                                                return (
+                                                                                                    <div
+
+                                                                                                        className={" col-lg-2 col-md-4 col-sm-6 col-6 txt_rg_cen"}>
+
+
+                                                                                                        <div className={"mg_pop"}>{this.state.lang.voyti.text}</div>
+
+
+                                                                                                    </div>
+
+                                                                                                )
+                                                                                            } else {
+                                                                                          
+                                                                                                if (moment().unix() >= data.lesson_start_timestamp_new || data.lesson_start_timestamp_new - moment().unix() <= 1800) {
+                                                                                                    return (
+
+                                                                                                        <div
+
+                                                                                                            className={" col-lg-2 col-md-4 col-sm-6 col-6 txt_rg_cen"}>
+
+
+                                                                                                            <Link onClick={() =>
+                                                                                                                this.saveMobile0({
+                                                                                                                    tid: lop.teacher_id,
+                                                                                                                    lid: data.teacher_lesson_id,
+                                                                                                                    or: lop.id
+                                                                                                                })
+                                                                                                            } className={"mg_pop"}>{this.state.lang.voyti.text}{console.log(data)}
+
+                                                                                                            </Link>
+
+
+                                                                                                        </div>
+
+                                                                                                    )
+                                                                                                } else {
+                                                                                                    return (
+                                                                                                        <div
+
+                                                                                                            className={" col-lg-2 col-md-4 col-sm-6 col-6 txt_rg_cen"}>
+
+
+                                                                                                            <div className={"mg_pop"}>{this.state.lang.voyti.text}</div>
+
+
+                                                                                                        </div>
+
+                                                                                                    )
+                                                                                                }
+
+                                                                                            }
+
+                                                                                        })()}
+
+
+
+                                                                                        {(() => {
+                                                                                            if (data.is_ended == true || this.state.todatTime / 1000 >= data.lesson_end_timestamp) {
+                                                                                                return (
+                                                                                                    <div
+                                                                                                        className={" col-lg-1 col-md-4 col-sm-6 col-6 txt_rg"}>
+
+                                                                                                        <p className={"mg_pop"}>
+                                                                                                            <div>
+                                                                                                                {this.state.lang.perenos.text}</div>
+                                                                                                        </p>
+
+
+                                                                                                    </div>
+
+                                                                                                )
+                                                                                            } else {
+                                                                                                return (
+                                                                                                    <div
+                                                                                                        className={" col-lg-1 col-md-4 col-sm-6 col-6 txt_rg"}>
+
+                                                                                                        <p className={"mg_pop"}>
+                                                                                                            <a href={"/rend/" + data.teacher_id + "/" + data.teacher_lesson_id}>
+                                                                                                                {this.state.lang.perenos.text}</a>
+                                                                                                        </p>
+
+
+                                                                                                    </div>
+
+                                                                                                )
+                                                                                            }
+
+                                                                                        })()}
+
+
+                                                                                        <div
+                                                                                            className={" col-lg-3 col-md-4 col-sm-6 col-6 txt_rg"}>
+
+
+                                                                                            <p className={"mg_pop"}>{this.state.lang.soobshenitlopo.text}
+                                                                                            </p>
+
+
+                                                                                        </div>
+
+                                                                                    </div>
+
+                                                                                    <div className={"line_lool"}></div>
+
+                                                                                </div>
+
+
+
+
+                                                                            </div>
+
+                                                                        )
+                                                                    }
+                                                                })()}
+
+
+                                                            </div>
+
+
+
+                                                        ))}
+
+                                                        {(() => {
+
+                                                            if (lop.lessons_pagination.all_student_lessons.length < 5) {
+                                                                return (
+                                                                    <p></p>
+                                                                )
+                                                            } else {
+
+                                                                if (lop.lessons_pagination.paginations.all_pages == lop.lessons_pagination.paginations.current_page) {
+                                                                    return (
+                                                                        <p></p>
+                                                                    )
+
+                                                                } else {
+                                                                    return (
+                                                                        <div className={"pagaa"}>
+
+                                                                            <Link className={"esesds"}
+
+                                                                                onClick={() =>
+                                                                                    this.paga({
+                                                                                        id: lop.id
+                                                                                    })}
+                                                                            >
+                                                                                Посмотреть ещё <img alt="" className={"arrrbottoms"} src={downarrraa}></img>
+                                                                            </Link>
+                                                                        </div>
+                                                                    )
+                                                                }
+
+
+
+
+                                                            }
+
+                                                        })()}
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                        ))}
+
+
+
+
+
+
+
+
 
 
                                     </div>
@@ -6424,7 +6675,7 @@ return(
                                                                     )
                                                                 } else {
                                                                     return (
-                                                                        <p>У вас нету групп</p>
+                                                                        <p>У вас нет групп</p>
                                                                     )
                                                                 }
                                                             })()}
