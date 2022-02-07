@@ -3060,6 +3060,9 @@ iframe {
 }
 
 @media only screen and (max-width: 1540px) {
+    .my_gr_pr_one{
+        padding-left: 20%;
+    }
   .profile_bbl_edents{
     display: inline-block;
     float: right;
