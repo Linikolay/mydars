@@ -1282,18 +1282,19 @@ if(this.state.emailcheck){
                                         if (this.state.email == "" || this.state.name1 == "" || this.state.name2 == "" || this.state.of == false || this.state.of1 == false || this.state.of2 == false || this.state.pass1 == "" || this.state.pass == "" || this.state.name == "" || this.state.shareholders[0].language_id == "" || this.state.shareholders[0].level == "") {
                                             return (<p></p>)
                                         } else {
+                                            return (
+                                                <Link onClick={() =>
+                                                    this.saveMobile0({})
+                                                } className={"no_hover ne_pa_data"}>
+                                                    {this.state.lang.NEXTTONEXT.text} <img alt="" className={"ne_pa"} src={next} />
+                                                </Link>
+                                            )/*
                                             if(this.state.emailcheck){
                                                 if(this.state.emailcheck.error == 0){
-                                                    return (
-                                                        <Link onClick={() =>
-                                                            this.saveMobile0({})
-                                                        } className={"no_hover ne_pa_data"}>
-                                                            {this.state.lang.NEXTTONEXT.text} <img alt="" className={"ne_pa"} src={next} />
-                                                        </Link>
-                                                    )
+                                                    
                                                 }
                                             }
-                                       
+                                       */   
                                         }
                                     })()}
                                     {(() => {

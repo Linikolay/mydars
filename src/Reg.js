@@ -1084,20 +1084,21 @@ class Reg extends Component {
                                                 this.state.pas1 && 
                                                 this.state.pas2
                                                 ) {
-
+                                                    return (
+                                                        <Link className={"no_decoration"}>
+                                            
+                                                            <p onClick={this.handleAdd4} className="btn_vh">
+                                                                <p className="bt_txt ">{this.state.lang.registrtxt.text}</p>
+                                                            </p></Link>
+                                                    )
+                                                    /*
 if(this.state.emailcheck){
     if(this.state.emailcheck.error == 0 ){
-        return (
-            <Link className={"no_decoration"}>
-
-                <p onClick={this.handleAdd4} className="btn_vh">
-                    <p className="bt_txt ">{this.state.lang.registrtxt.text}</p>
-                </p></Link>
-        )
+       
     }
 }
  
-
+*/
                                            
                                             }
 
