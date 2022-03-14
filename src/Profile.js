@@ -2036,9 +2036,9 @@ class Lesson extends Component {
                     
                     if (data.join_url_moderator) {
                         console.log("fffffffffff")
-                        window.location.replace("/gconf/" + obj.gr + "/" + obj.te + "/" + this.state.main.profile.id);
+                        // window.location.replace("/gconf/" + obj.gr + "/" + obj.te + "/" + this.state.main.profile.id);
     
-    
+                        window.location.replace(data.join_url_moderator);
                     }
                     this.setState({
                         // isLoaded: true,
@@ -2049,7 +2049,8 @@ class Lesson extends Component {
                 }
                 )
         }else{
-            window.location.replace("/gconf/" + obj.gr + "/" + obj.te + "/" + this.state.main.profile.id);
+        
+            // window.location.replace("/gconf/" + obj.gr + "/" + obj.te + "/" + this.state.main.profile.id);
         }
         
     }
@@ -2088,8 +2089,8 @@ class Lesson extends Component {
                 console.log(data)
                 console.log(data)
                 if (data.join_url_moderator) {
-                    console.log("fffffffffff")
-                    window.location.replace("/conference/" + obj.lid + "/" + obj.or);
+                    console.log(data)
+                    // window.location.replace(data.join_url_moderator);
 
 
                 }
@@ -3032,20 +3033,12 @@ if (this.state.rand == "" || this.state.rand == undefined || this.state.rand.ord
                                                                                                                         if (this.state.main.profile.is_user == false) {
                                                                                                                             if (data.lesson_url_teacher == "") {
                                                                                                                                 return (
-                                                                                                                                    <Link onClick={() =>
-                                                                                                                                        this.saveMobile2({
-                        
-                                                                                                                                        })
-                                                                                                                                    } className={"nop_magssss mg_pop"}>{this.state.lang.voyti.text}</Link>
+                                                                                                                                    <a  href={data.lesson_url_teacher} className={"nop_magssss mg_pop"}>{this.state.lang.voyti.text}</a>
                                                                                                                                 )
                                                                                                                             } else {
                         
                                                                                                                                 return (
-                                                                                                                                    <Link onClick={() =>
-                                                                                                                                        this.saveMobile2({
-                        
-                                                                                                                                        })
-                                                                                                                                    } className={"nop_magssss mg_pop"}>{this.state.lang.voyti.text}</Link>
+                                                                                                                                    <a  href={data.lesson_url_teacher} className={"nop_magssss mg_pop"}>{this.state.lang.voyti.text}</a>
                                                                                                                                 )
                                                                                                                             }
                                                                                                                         } else {
@@ -3072,12 +3065,7 @@ if (this.state.rand == "" || this.state.rand == undefined || this.state.rand.ord
                                                                                                                                 } else {
                         
                                                                                                                                     return (
-                                                                                                                                        <Link onClick={() =>
-                                                                                                                                            this.saveMobile2({
-                                                                                                                                                "url": data.teacher_lesson_id,
-                                                                                                                                                "id": lop.id
-                                                                                                                                            })
-                                                                                                                                        } className={"nop_magssss mg_pop"}>{this.state.lang.voyti.text}</Link>
+                                                                                                                                        <a href={data.lesson_url_student} className={"nop_magssss mg_pop"}>{this.state.lang.voyti.text}</a>
                                                                                                                                     )
                                                                                                                                 }
                         
